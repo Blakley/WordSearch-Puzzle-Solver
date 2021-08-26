@@ -205,29 +205,41 @@ function solve() {
     }
 }
 
+function color() {
+    let k = 0;
+    let used = [];
+    setInterval(function() { 
+        if (used.length == word_bank.length)
+            used = [];
 
-
-function highlight() {
-
-
-
-    setInterval(() => {
-        for (let i = 0; i < letter_positions.length; i++) {
-            let pos = letter_positions[i];
-            let color = Math.floor(Math.random()*16777215).toString(16);
-    
-            for (let j = 0; j < pos.length; j++) {
-                let r = pos[j][0];
-                let c = pos[j][1];
-                document.getElementById("wordsearchGrid").children[r].children[c].style.color = "#" + color;            
-            }
+       let w = letter_positions[k];    
+       for (let j = 0; j < w.length; j++) 
+           document.getElementById("wordsearchGrid").children[w[j][0]].children[w[j][1]].style.color =  "";     
+   
+        let color = Math.floor(Math.random() * 16777215).toString(16); 
+        let i = Math.floor(Math.random() * letter_positions.length);
+        while (true) {
+            if (!used.includes(i))
+                break;
+            else
+                i = Math.floor(Math.random() * letter_positions.length);
         }
-    }, 5000);    
-}
 
+        let word = letter_positions[i];    
+        for (let j = 0; j < word.length; j++) {
+            let r = word[j][0];
+            let c = word[j][1];
+            document.getElementById("wordsearchGrid").children[r].children[c].style.color =  "#" + color;        
+        }
+
+        k = i;
+        used.push(k);
+    }, 2500);
+
+}
 
 bank();
 puzzle();
 usable();
-// solve();
-// highlight();
+solve();
+// color();
