@@ -1,5 +1,3 @@
-// url: https://api.razzlepuzzles.com/wordsearch
-
 let word_bank = [];
 
 function bank() {
@@ -242,4 +240,4 @@ bank();
 puzzle();
 usable();
 solve();
-// color();
+color();
